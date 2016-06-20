@@ -34,6 +34,7 @@ class ActsPallet(Pallet):
         self.copy_data = [self.destination_workspace]
 
         self.fields = [('id', 'Guid'), ('y', 'TEXT'), ('t', 'TEXT'), ('n', 'TEXT'), ('c', 'TEXT')]
+        self.destination_coordinate_system = 26912
 
     def build(self, configuration='Production'):
         self.in_memory = 'in_memory/Points'
@@ -48,8 +49,7 @@ class ActsPallet(Pallet):
         self.add_crates(
             [self.PROJECTAREA, self.PROJECTINFORMATION, self.CONTRACTINFORMATION, self.COUNTY],
             {'source_workspace': self.source_workspace,
-             'destination_workspace': self.destination_workspace,
-             'destination_coordinate_system': 26912})
+             'destination_workspace': self.destination_workspace})
 
         self._create_workspace(self.destination_workspace)
 
