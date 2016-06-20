@@ -31,7 +31,7 @@ class ActsPallet(Pallet):
         self.destination_workspace = 'C:\\Scheduled\\Staging\\Salinity.gdb'
 
         self.arcgis_services = [('ACTSStatisticsViewer', 'MapServer')]
-        self.copy_to = [self.destination_workspace]
+        self.copy_data = [self.destination_workspace]
 
         self.fields = [('id', 'Guid'), ('y', 'TEXT'), ('t', 'TEXT'), ('n', 'TEXT'), ('c', 'TEXT')]
 
