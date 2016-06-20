@@ -38,13 +38,12 @@ class ActsPallet(Pallet):
     def build(self, configuration='Production'):
         self.in_memory = 'in_memory/Points'
 
-        prefix = 'Salinity'
-        db = 'salinity.agrc.utah.gov.sde'
+        db = 'ACTS_PROD.sde'
 
         if configuration == 'Staging':
-            db = 'itdb110sp.dts.utah.gov.sde'
+            db = 'ACTS_STAGE.sde'
 
-        self.source_workspace = join('Database Connections', '{} on {}'.format(prefix, db))
+        self.source_workspace = join(self.garage, db)
 
         self.add_crates(
             [self.PROJECTAREA, self.PROJECTINFORMATION, self.CONTRACTINFORMATION, self.COUNTY],
