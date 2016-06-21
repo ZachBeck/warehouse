@@ -9,21 +9,25 @@ A module that contains a template for database maintenance pallets
 import arcpy
 from forklift.models import Pallet
 from os.path import join
+from time import strftime
 from traceback import format_exc
 
 
 class Sgid10Pallet(Pallet):
 
+    def is_ready_to_ship(self):
+        return strftime('%A') == 'Friday'
+
     def ship(self):
         try:
-            # Run commands as user SDE to compress and analyze database and system tables
+            #: Run commands as user SDE to compress and analyze database and system tables
             sdeconnection = join(self.garage, 'SGID10', 'sde@SGID10@sgid.agrc.utah.gov.sde')
             arcpy.Compress_management(sdeconnection)
             self.log.info('Compress Complete')
 
-            # System table analyze was giving problems so it had to go for now.
-            #arcpy.AnalyzeDatasets_management(sdeconnection,'SYSTEM')
-            #print 'Analyze System Tables Complete'
+            #: System table analyze was giving problems so it had to go for now.
+            # arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
+            # print 'Analyze System Tables Complete'
 
             userconnections = [join(self.garage, 'SGID10', 'SGID_Biosciense@SGID10@sgid.agrc.utah.gov.sde'),
                                join(self.garage, 'SGID10', 'SGID_Boundaries@SGID10@sgid.agrc.utah.gov.sde'),
