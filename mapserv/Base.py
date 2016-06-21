@@ -10,6 +10,27 @@ from forklift.models import Pallet
 from os.path import join
 
 
+class LandUsePlanningPallet(Pallet):
+
+    def __init__(self):
+        super(LandUsePlanningPallet, self).__init__()
+
+        self.arcgis_services = [('LandUsePlanning', 'MapServer')]
+
+        self.political = 'C:\\Scheduled\\Staging\\Political.gdb'
+
+        self.copy_data = [self.political]
+        self.destination_coordinate_system = 26912
+
+    def build(self, configuration=None):
+        source_workspace = join(self.garage, 'SGID10.sde')
+
+        self.add_crates(
+            ['UtahHouseDistricts2012', 'UtahSenateDistricts2012', 'DistrictCombinationAreas2012'],
+            {'source_workspace': source_workspace,
+             'destination_workspace': self.political})
+
+
 class PoliticalDistrictsPallet(Pallet):
 
     def __init__(self):
