@@ -16,7 +16,6 @@ class UtransPallet(Pallet):
 
     def ship(self):
         try:
-            # sdeconnection = r'C:\Scheduled\UTRANS\DC_sde@UTRANS@utrans.agrc.utah.gov.sde'
             sdeconnection = join(self.garage, 'UTRANS', 'DC_sde@UTRANS@utrans.agrc.utah.gov.sde')
 
             arcpy.Compress_management(sdeconnection)
