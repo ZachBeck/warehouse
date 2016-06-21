@@ -7,11 +7,9 @@ A module that contains a template for database maintenance pallets
 '''
 
 from forklift.models import Pallet
-from os.path import join, dirname
+from os.path import join
 from traceback import format_exc
 import arcpy
-
-current_folder = dirname(__file__)
 
 
 class UtransPallet(Pallet):
@@ -27,42 +25,35 @@ class UtransPallet(Pallet):
             arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
             self.log.info('Analyze System Tables Complete')
 
-            userconnections = [join(self.garage, 'UTRANS', 'DC_TRANSADMIN@UTRANS@utrans.agrc.utah.gov.sde')]
+            con = join(self.garage, 'UTRANS', 'DC_TRANSADMIN@UTRANS@utrans.agrc.utah.gov.sde')
 
-            for con in userconnections:
-                # set workspace
-                # the user in this workspace must be the owner of the data to analyze.
-                workspace = con
+            # set workspace
+            # the user in this workspace must be the owner of the data to analyze.
+            workspace = con
 
-                # set the workspace environment
-                arcpy.env.workspace = workspace
+            # set the workspace environment
+            arcpy.env.workspace = workspace
 
-                # NOTE: Analyze Datasets can accept a Python list of datasets.
+            # NOTE: Analyze Datasets can accept a Python list of datasets.
 
-                # Get a list of all the datasets the user has access to.
-                # First, get all the stand alone tables, feature classes and rasters.
-                dataList = arcpy.ListTables() + arcpy.ListFeatureClasses() + arcpy.ListRasters()
+            # Get a list of all the datasets the user has access to.
+            # First, get all the stand alone tables, feature classes and rasters.
+            dataList = arcpy.ListTables() + arcpy.ListFeatureClasses() + arcpy.ListRasters()
 
-                # Next, for feature datasets get all of the datasets and featureclasses
-                # from the list and add them to the master list.
-                for dataset in arcpy.ListDatasets('', 'Feature'):
-                    arcpy.env.workspace = join(workspace, dataset)
-                    dataList += arcpy.ListFeatureClasses() + arcpy.ListDatasets()
+            # Next, for feature datasets get all of the datasets and featureclasses
+            # from the list and add them to the master list.
+            for dataset in arcpy.ListDatasets('', 'Feature'):
+                arcpy.env.workspace = join(workspace, dataset)
+                dataList += arcpy.ListFeatureClasses() + arcpy.ListDatasets()
 
-                # reset the workspace
-                arcpy.env.workspace = workspace
+            # reset the workspace
+            arcpy.env.workspace = workspace
 
-                # Get the user name for the workspace
-                userName = arcpy.Describe(workspace).connectionProperties.user.lower()
-
-                # remove any datasets that are not owned by the connected user.
-                userDataList = [ds for ds in dataList if ds.lower().find('.%s.' % userName) > -1]
-
-                # Execute analyze datasets
-                # Note: to use the 'SYSTEM' option the workspace user must be an administrator.
-                arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA',
-                                                 'ANALYZE_ARCHIVE')
-                self.log.info('Analyze Complete')
+            # Execute analyze datasets
+            # Note: to use the 'SYSTEM' option the workspace user must be an administrator.
+            arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA',
+                                             'ANALYZE_ARCHIVE')
+            self.log.info('Analyze Complete')
         except Exception as e:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
             raise e
