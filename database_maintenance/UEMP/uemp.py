@@ -6,27 +6,26 @@ uemp.py
 A module that contains a template for database maintenance pallets
 '''
 
+import arcpy
 from forklift.models import Pallet
-from os.path import join, dirname
+from os.path import join
 from traceback import format_exc
-
-current_folder = dirname(__file__)
 
 
 class UempPallet(Pallet):
+
     def ship(self):
         try:
-            #: code goes here, remove pass
-            #: remember to update the paths to database connection files like this:
-            #: join(current_folder, 'connection_file.sde')
-            # Run commands as user SDE to compress and analyze database and system tables
-            sdeconnection = join(self.garage, UEMP, 'sde@UEMP@itdb104sp.dts.utah.gov.sde')
-            arcpy.Compress_management(sdeconnection)
-            self.log.info("Compress Complete")
-            arcpy.AnalyzeDatasets_management(sdeconnection,"SYSTEM")
-            self.log.info("Analyze System Tables Complete")
+            #: Run commands as user SDE to compress and analyze database and system tables
+            sdeconnection = join(self.garage, 'UEMP', 'sde@UEMP@itdb104sp.dts.utah.gov.sde')
 
-            userconnections = [join(self.garage, UEMP, 'uempadmin@UEMP@uemp.agrc.utah.gov.sde')]
+            arcpy.Compress_management(sdeconnection)
+            self.log.info('Compress Complete')
+
+            arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
+            self.log.info('Analyze System Tables Complete')
+
+            userconnections = [join(self.garage, 'UEMP', 'uempadmin@UEMP@uemp.agrc.utah.gov.sde')]
 
             for con in userconnections:
                 # set workspace
@@ -44,25 +43,19 @@ class UempPallet(Pallet):
 
                 # Next, for feature datasets get all of the datasets and featureclasses
                 # from the list and add them to the master list.
-                for dataset in arcpy.ListDatasets("", "Feature"):
-                    arcpy.env.workspace = join(workspace,dataset)
+                for dataset in arcpy.ListDatasets('', 'Feature'):
+                    arcpy.env.workspace = join(workspace, dataset)
                     dataList += arcpy.ListFeatureClasses() + arcpy.ListDatasets()
 
                 # reset the workspace
                 arcpy.env.workspace = workspace
 
-                # Get the user name for the workspace
-                userName = arcpy.Describe(workspace).connectionProperties.user.lower()
-
-                # remove any datasets that are not owned by the connected user.
-                userDataList = [ds for ds in dataList if ds.lower().find(".%s." % userName) > -1]
-
                 # Execute analyze datasets
-                # Note: to use the "SYSTEM" option the workspace user must be an administrator.
+                # Note: to use the 'SYSTEM' option the workspace user must be an administrator.
                 if len(dataList) > 0:
-                    arcpy.AnalyzeDatasets_management(workspace, "NO_SYSTEM", dataList, "ANALYZE_BASE","ANALYZE_DELTA","ANALYZE_ARCHIVE")
-                    self.log.info("Analyze Complete")
-
+                    arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA',
+                                                     'ANALYZE_ARCHIVE')
+                    self.log.info('Analyze Complete')
 
         except Exception as e:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
