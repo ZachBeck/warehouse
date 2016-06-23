@@ -174,3 +174,28 @@ class SocrataPallet(Pallet):
 
         self.add_crates(['TaxEntities2014'], {'source_workspace': source_workspace,
                                               'destination_workspace': self.economy})
+
+
+class OilGasMiningPallet(Pallet):
+
+    def __init__(self):
+        super(OilGasMiningPallet, self).__init__()
+
+        self.arcgis_services = [('OilGasMining', 'MapServer')]
+
+        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
+        self.energy = 'C:\\Scheduled\\Staging\\Energy.gdb'
+        self.water = 'C:\\Scheduled\\Staging\\Water.gdb'
+
+        self.copy_data = [self.boundaries, self.energy, self.water]
+
+    def build(self, configuration=None):
+        source_workspace = join(self.garage, 'SGID10.sde')
+
+        self.add_crates(['Counties'], {'source_workspace': source_workspace, 'destination_workspace': self.boundaries})
+
+        self.add_crates(["DNROilGasWells", "DNROilGasFields", "DNROilGasUnits"], {'source_workspace': source_workspace,
+                                                                                  'destination_workspace': self.energy})
+
+        self.add_crates(['StreamsNHDHighRes'], {'source_workspace': source_workspace,
+                                                'destination_workspace': self.water})
