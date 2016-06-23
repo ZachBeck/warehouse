@@ -31,8 +31,10 @@ class BaseMapsPallet(Pallet):
         source_workspace = join(self.garage, 'SGID10.sde')
 
         self.add_crates(['Roads'], {'source_workspace': source_workspace, 'destination_workspace': self.transportation})
+
         self.add_crates(['Municipalities_Carto', 'Counties'], {'source_workspace': source_workspace,
                                                                'destination_workspace': self.boundaries})
+
         self.add_crates(['ZoomLocations', 'PlaceNamesGNIS2000', 'AddressPoints'],
                         {'source_workspace': source_workspace,
                          'destination_workspace': self.location})
