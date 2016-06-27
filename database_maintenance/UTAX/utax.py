@@ -23,7 +23,7 @@ class UtaxPallet(Pallet):
             arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
             self.log.info('Analyze System Tables Complete')
 
-            userconnections = [join(self.garage, 'UTAX' 'DC_ustccass@UTAX@utax.agrc.utah.gov.sde')]
+            userconnections = [join(self.garage, 'UTAX', 'DC_ustccass@UTAX@utax.agrc.utah.gov.sde')]
 
             for con in userconnections:
                 # set workspace
@@ -54,6 +54,6 @@ class UtaxPallet(Pallet):
                                                  'ANALYZE_ARCHIVE')
                 self.log.info('Analyze Complete')
 
-        except Exception as e:
+        except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
-            raise e
+            raise

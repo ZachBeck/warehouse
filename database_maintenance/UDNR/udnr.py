@@ -12,7 +12,7 @@ from os.path import join
 from traceback import format_exc
 
 
-class TemplatePallet(Pallet):
+class UdnrPallet(Pallet):
     def ship(self):
         try:
             # Run commands as user SDE to compress and analyze database and system tables
@@ -58,6 +58,6 @@ class TemplatePallet(Pallet):
                     arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA', 'ANALYZE_ARCHIVE')
                     self.log.info('Analyze Complete')
 
-        except Exception as e:
+        except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
-            raise e
+            raise

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # * coding: utf8 *
 '''
-template.py
+udwr.py
 
 A module that contains a template for database maintenance pallets
 '''
@@ -12,7 +12,7 @@ from os.path import join
 from traceback import format_exc
 
 
-class TemplatePallet(Pallet):
+class UdwrPallet(Pallet):
     def ship(self):
         try:
             # Run commands as user SDE to compress and analyze database and system tables
@@ -52,6 +52,6 @@ class TemplatePallet(Pallet):
                 arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA', 'ANALYZE_ARCHIVE')
                 print 'Analyze Complete'
 
-        except Exception as e:
+        except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
-            raise e
+            raise

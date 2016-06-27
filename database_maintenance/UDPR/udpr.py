@@ -12,10 +12,10 @@ from os.path import join
 from traceback import format_exc
 
 
-class TemplatePallet(Pallet):
+class UdprPallet(Pallet):
     def ship(self):
         try:
-            # Run commands as user SDE to compress and analyze database and system tables
+            # Run commands as user SDE to compress and analyze database and system tableps
             sdeconnection = join(self.garage, 'UDPR', 'DNR_sde@UDPR@itdb104sp.dts.utah.gov.sde')
             arcpy.Compress_management(sdeconnection)
             self.log.info('Compress Complete')
@@ -53,6 +53,6 @@ class TemplatePallet(Pallet):
                     arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA', 'ANALYZE_ARCHIVE')
                     self.log.info('Analyze Complete')
 
-        except Exception as e:
+        except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
-            raise e
+            raise

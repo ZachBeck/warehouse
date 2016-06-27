@@ -16,10 +16,6 @@ class UggpPallet(Pallet):
 
     def ship(self):
         try:
-            #: code goes here, remove pass
-            #: remember to update the paths to database connection files like this:
-            #: join(current_folder, 'connection_file.sde')
-
             # Run commands as user SDE to compress and analyze database and system tables
             sdeconnection = join(self.garage, 'UGGP', 'sde@UGGP@uggp.agrc.utah.gov.sde')
             arcpy.Compress_management(sdeconnection)
@@ -61,6 +57,6 @@ class UggpPallet(Pallet):
 
             pass
 
-        except Exception as e:
+        except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
-            raise e
+            raise

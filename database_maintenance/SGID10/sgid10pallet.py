@@ -89,6 +89,6 @@ class Sgid10Pallet(Pallet):
                                                      'ANALYZE_DELTA', 'ANALYZE_ARCHIVE')
                     self.log.info('Analyze Complete')
 
-        except Exception as e:
+        except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
-            raise e
+            raise
