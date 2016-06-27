@@ -21,7 +21,7 @@ class Sgid10Pallet(Pallet):
     def ship(self):
         try:
             #: Run commands as user SDE to compress and analyze database and system tables
-            sdeconnection = join(self.garage, 'SGID10', 'sde@SGID10@sgid.agrc.utah.gov.sde')
+            sdeconnection = join(self.garage, 'SGID10', 'SGID_sde@SGID10@sgid.agrc.utah.gov.sde')
             arcpy.Compress_management(sdeconnection)
             self.log.info('Compress Complete')
 
