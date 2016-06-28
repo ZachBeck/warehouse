@@ -16,7 +16,11 @@ from traceback import format_exc
 class Sgid10Pallet(Pallet):
 
     def is_ready_to_ship(self):
-        return strftime('%A') == 'Friday'
+        ready = strftime('%A') == 'Friday'
+        if not ready:
+            self.success = (True, 'This pallet only runs on Fridays.')
+
+        return ready
 
     def ship(self):
         try:
