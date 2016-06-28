@@ -18,7 +18,7 @@ class LtGovPoliticalDistrictsPallet(Pallet):
         self.arcgis_services = [('LtGovPoliticalDistricts/Districts', 'MapServer'),
                                 ('LtGovPoliticalDistricts/Labels', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\Staging\\Political.gdb'
+        self.political = 'C:\\Scheduled\\Staging\\Political_UTM.gdb'
 
         self.copy_data = [self.political]
         self.destination_coordinate_system = 26912

@@ -20,9 +20,9 @@ class BaseMapsPallet(Pallet):
                                 ('BaseMaps/Terrain', 'MapServer'), ('BaseMaps/Topo', 'MapServer'),
                                 ('BaseMaps/Vector', 'MapServer')]
 
-        self.transportation = 'C:\\Scheduled\\Staging\\Transportation.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\Location.gdb'
+        self.transportation = 'C:\\Scheduled\\Staging\\Transportation_UTM.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries_UTM.gdb'
+        self.location = 'C:\\Scheduled\\Staging\\Location_UTM.gdb'
 
         self.copy_data = [self.transportation, self.boundaries, self.location]
         self.destination_coordinate_system = 26912

@@ -18,9 +18,9 @@ class SgidPallet(Pallet):
         self.arcgis_services = [('SGID/CountyBoundaries', 'MapServer'), ('SGID/DOGM', 'MapServer'),
                                 ('SGID/LandOwnership', 'MapServer')]
 
-        self.energy = 'C:\\Scheduled\\Staging\\Energy.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre.gdb'
+        self.energy = 'C:\\Scheduled\\Staging\\Energy_UTM.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries_UTM.gdb'
+        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre_UTM.gdb'
 
         self.copy_data = [self.energy, self.boundaries, self.cadastre]
         self.destination_coordinate_system = 26912

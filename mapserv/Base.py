@@ -17,10 +17,10 @@ class Hava(Pallet):
 
         self.arcgis_services = [('Hava', 'MapServer')]
 
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\Location.gdb'
-        self.political = 'C:\\Scheduled\\Staging\\Political.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries_UTM.gdb'
+        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre_UTM.gdb'
+        self.location = 'C:\\Scheduled\\Staging\\Location_UTM.gdb'
+        self.political = 'C:\\Scheduled\\Staging\\Political_UTM.gdb'
 
         self.copy_data = [self.boundaries, self.cadastre, self.location, self.political]
         self.destination_coordinate_system = 26912
@@ -56,17 +56,17 @@ class LandUsePlanningPallet(Pallet):
 
         self.arcgis_services = [('LandUsePlanning', 'MapServer')]
 
-        self.bioscience = 'C:\\Scheduled\\Staging\\Bioscience.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre.gdb'
-        self.geoscience = 'C:\\Scheduled\\Staging\\Geoscience.gdb'
-        self.health = 'C:\\Scheduled\\Staging\\Health.gdb'
-        self.history = 'C:\\Scheduled\\Staging\\History.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\Location.gdb'
-        self.planning = 'C:\\Scheduled\\Staging\\Planning.gdb'
-        self.society = 'C:\\Scheduled\\Staging\\Society.gdb'
-        self.transportation = 'C:\\Scheduled\\Staging\\Transportation.gdb'
-        self.water = 'C:\\Scheduled\\Staging\\Water.gdb'
+        self.bioscience = 'C:\\Scheduled\\Staging\\Bioscience_UTM.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries_UTM.gdb'
+        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre_UTM.gdb'
+        self.geoscience = 'C:\\Scheduled\\Staging\\Geoscience_UTM.gdb'
+        self.health = 'C:\\Scheduled\\Staging\\Health_UTM.gdb'
+        self.history = 'C:\\Scheduled\\Staging\\History_UTM.gdb'
+        self.location = 'C:\\Scheduled\\Staging\\Location_UTM.gdb'
+        self.planning = 'C:\\Scheduled\\Staging\\Planning_UTM.gdb'
+        self.society = 'C:\\Scheduled\\Staging\\Society_UTM.gdb'
+        self.transportation = 'C:\\Scheduled\\Staging\\Transportation_UTM.gdb'
+        self.water = 'C:\\Scheduled\\Staging\\Water_UTM.gdb'
 
         self.copy_data = [self.bioscience, self.boundaries, self.cadastre, self.geoscience, self.health, self.history,
                           self.location, self.planning, self.society, self.transportation, self.water]
@@ -127,7 +127,7 @@ class PoliticalDistrictsPallet(Pallet):
 
         self.arcgis_services = [('PoliticalDistricts', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\Staging\\Political.gdb'
+        self.political = 'C:\\Scheduled\\Staging\\Political_UTM.gdb'
 
         self.copy_data = [self.political]
         self.destination_coordinate_system = 26912
