@@ -17,7 +17,7 @@ class RoadKillPallet(Pallet):
 
         self.arcgis_services = [('RoadKill/Overlays', 'MapServer'), ('RoadKill/Toolbox', 'GPServer')]
 
-        self.transportation = 'C:\\Scheduled\\Staging\\Transportation_UTM.gdb'
+        self.transportation = 'C:\\Scheduled\\Staging\\transportation_utm.gdb'
 
         self.copy_data = [self.transportation]
         self.destination_coordinate_system = 26912

@@ -18,7 +18,7 @@ class SurfaceWaterQualityPallet(Pallet):
         self.arcgis_services = [('SurfaceWaterQuality/MapService', 'MapServer'),
                                 ('SurfaceWaterQuality/Toolbox', 'GPServer')]
 
-        self.water = 'C:\\Scheduled\\Staging\\Water.gdb'
+        self.water = 'C:\\Scheduled\\Staging\\water.gdb'
 
         self.copy_data = [self.water]
 

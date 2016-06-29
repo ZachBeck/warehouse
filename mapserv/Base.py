@@ -17,10 +17,10 @@ class Hava(Pallet):
 
         self.arcgis_services = [('Hava', 'MapServer')]
 
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries_UTM.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre_UTM.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\Location_UTM.gdb'
-        self.political = 'C:\\Scheduled\\Staging\\Political_UTM.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries_utm.gdb'
+        self.cadastre = 'C:\\Scheduled\\Staging\\cadastre_utm.gdb'
+        self.location = 'C:\\Scheduled\\Staging\\location_utm.gdb'
+        self.political = 'C:\\Scheduled\\Staging\\political_utm.gdb'
 
         self.copy_data = [self.boundaries, self.cadastre, self.location, self.political]
         self.destination_coordinate_system = 26912
@@ -56,17 +56,17 @@ class LandUsePlanningPallet(Pallet):
 
         self.arcgis_services = [('LandUsePlanning', 'MapServer')]
 
-        self.bioscience = 'C:\\Scheduled\\Staging\\Bioscience_UTM.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries_UTM.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\Cadastre_UTM.gdb'
-        self.geoscience = 'C:\\Scheduled\\Staging\\Geoscience_UTM.gdb'
-        self.health = 'C:\\Scheduled\\Staging\\Health_UTM.gdb'
-        self.history = 'C:\\Scheduled\\Staging\\History_UTM.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\Location_UTM.gdb'
-        self.planning = 'C:\\Scheduled\\Staging\\Planning_UTM.gdb'
-        self.society = 'C:\\Scheduled\\Staging\\Society_UTM.gdb'
-        self.transportation = 'C:\\Scheduled\\Staging\\Transportation_UTM.gdb'
-        self.water = 'C:\\Scheduled\\Staging\\Water_UTM.gdb'
+        self.bioscience = 'C:\\Scheduled\\Staging\\bioscience_utm.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries_utm.gdb'
+        self.cadastre = 'C:\\Scheduled\\Staging\\cadastre_utm.gdb'
+        self.geoscience = 'C:\\Scheduled\\Staging\\geoscience_utm.gdb'
+        self.health = 'C:\\Scheduled\\Staging\\health_utm.gdb'
+        self.history = 'C:\\Scheduled\\Staging\\history_utm.gdb'
+        self.location = 'C:\\Scheduled\\Staging\\location_utm.gdb'
+        self.planning = 'C:\\Scheduled\\Staging\\planning_utm.gdb'
+        self.society = 'C:\\Scheduled\\Staging\\society_utm.gdb'
+        self.transportation = 'C:\\Scheduled\\Staging\\transportation_utm.gdb'
+        self.water = 'C:\\Scheduled\\Staging\\water_utm.gdb'
 
         self.copy_data = [self.bioscience, self.boundaries, self.cadastre, self.geoscience, self.health, self.history,
                           self.location, self.planning, self.society, self.transportation, self.water]
@@ -127,7 +127,7 @@ class PoliticalDistrictsPallet(Pallet):
 
         self.arcgis_services = [('PoliticalDistricts', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\Staging\\Political_UTM.gdb'
+        self.political = 'C:\\Scheduled\\Staging\\political_utm.gdb'
 
         self.copy_data = [self.political]
         self.destination_coordinate_system = 26912
@@ -148,11 +148,11 @@ class SocrataPallet(Pallet):
 
         self.arcgis_services = [('Socrata', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\Staging\\Political.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
-        self.society = 'C:\\Scheduled\\Staging\\Society.gdb'
-        self.energy = 'C:\\Scheduled\\Staging\\Energy.gdb'
-        self.economy = 'C:\\Scheduled\\Staging\\Economy.gdb'
+        self.political = 'C:\\Scheduled\\Staging\\political.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries.gdb'
+        self.society = 'C:\\Scheduled\\Staging\\society.gdb'
+        self.energy = 'C:\\Scheduled\\Staging\\energy.gdb'
+        self.economy = 'C:\\Scheduled\\Staging\\economy.gdb'
 
         self.copy_data = [self.political, self.boundaries, self.society, self.energy, self.economy]
 
@@ -183,9 +183,9 @@ class OilGasMiningPallet(Pallet):
 
         self.arcgis_services = [('OilGasMining', 'MapServer')]
 
-        self.boundaries = 'C:\\Scheduled\\Staging\\Boundaries.gdb'
-        self.energy = 'C:\\Scheduled\\Staging\\Energy.gdb'
-        self.water = 'C:\\Scheduled\\Staging\\Water.gdb'
+        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries.gdb'
+        self.energy = 'C:\\Scheduled\\Staging\\energy.gdb'
+        self.water = 'C:\\Scheduled\\Staging\\water.gdb'
 
         self.copy_data = [self.boundaries, self.energy, self.water]
 

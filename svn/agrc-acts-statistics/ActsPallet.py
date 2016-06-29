@@ -28,7 +28,7 @@ class ActsPallet(Pallet):
     def __init__(self):
         super(ActsPallet, self).__init__()
 
-        self.destination_workspace = 'C:\\Scheduled\\Staging\\Salinity.gdb'
+        self.destination_workspace = 'C:\\Scheduled\\Staging\\salinity.gdb'
 
         self.arcgis_services = [('ACTSStatisticsViewer', 'MapServer')]
         self.copy_data = [self.destination_workspace]
