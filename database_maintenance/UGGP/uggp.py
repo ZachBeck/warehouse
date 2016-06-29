@@ -45,6 +45,9 @@ class UggpPallet(Pallet):
                     arcpy.env.workspace = join(workspace, dataset)
                     dataList += arcpy.ListFeatureClasses() + arcpy.ListDatasets()
 
+                #: filter out topology items
+                dataList = [table for table in dataList if 'topology' not in table.lower()]
+
                 # reset the workspace
                 arcpy.env.workspace = workspace
 
@@ -54,9 +57,6 @@ class UggpPallet(Pallet):
                     arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA',
                                                      'ANALYZE_ARCHIVE')
                     self.log.info('Analyze Complete')
-
-            pass
-
         except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
             raise
