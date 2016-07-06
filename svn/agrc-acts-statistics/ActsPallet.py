@@ -37,8 +37,6 @@ class ActsPallet(Pallet):
         self.destination_coordinate_system = 26912
 
     def build(self, configuration='Production'):
-        self.in_memory = 'in_memory/Points'
-
         db = 'ACTS_PROD.sde'
 
         if configuration == 'Staging':
@@ -71,6 +69,8 @@ class ActsPallet(Pallet):
         self._update_point_fields()
 
         self._update_data_attributes()
+
+        arcpy.Delete_management('in_memory')
 
         self.log.info('done.')
 
