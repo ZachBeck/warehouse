@@ -70,7 +70,7 @@ class ActsPallet(Pallet):
 
         self._update_data_attributes()
 
-        arcpy.Delete_management('in_memory')
+        arcpy.Delete_management(project_area_fc)
 
         self.log.info('done.')
 
