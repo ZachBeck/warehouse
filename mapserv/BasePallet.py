@@ -17,17 +17,17 @@ class LandUsePlanningPallet(Pallet):
 
         self.arcgis_services = [('LandUsePlanning', 'MapServer')]
 
-        self.bioscience = 'C:\\Scheduled\\Staging\\bioscience_utm.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries_utm.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\cadastre_utm.gdb'
-        self.geoscience = 'C:\\Scheduled\\Staging\\geoscience_utm.gdb'
-        self.health = 'C:\\Scheduled\\Staging\\health_utm.gdb'
-        self.history = 'C:\\Scheduled\\Staging\\history_utm.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\location_utm.gdb'
-        self.planning = 'C:\\Scheduled\\Staging\\planning_utm.gdb'
-        self.society = 'C:\\Scheduled\\Staging\\society_utm.gdb'
-        self.transportation = 'C:\\Scheduled\\Staging\\transportation_utm.gdb'
-        self.water = 'C:\\Scheduled\\Staging\\water_utm.gdb'
+        self.bioscience = 'C:\\Scheduled\\staging\\bioscience_utm.gdb'
+        self.boundaries = 'C:\\Scheduled\\staging\\boundaries_utm.gdb'
+        self.cadastre = 'C:\\Scheduled\\staging\\cadastre_utm.gdb'
+        self.geoscience = 'C:\\Scheduled\\staging\\geoscience_utm.gdb'
+        self.health = 'C:\\Scheduled\\staging\\health_utm.gdb'
+        self.history = 'C:\\Scheduled\\staging\\history_utm.gdb'
+        self.location = 'C:\\Scheduled\\staging\\location_utm.gdb'
+        self.planning = 'C:\\Scheduled\\staging\\planning_utm.gdb'
+        self.society = 'C:\\Scheduled\\staging\\society_utm.gdb'
+        self.transportation = 'C:\\Scheduled\\staging\\transportation_utm.gdb'
+        self.water = 'C:\\Scheduled\\staging\\water_utm.gdb'
 
         self.copy_data = [self.bioscience, self.boundaries, self.cadastre, self.geoscience, self.health, self.history,
                           self.location, self.planning, self.society, self.transportation, self.water]
@@ -88,7 +88,7 @@ class PoliticalDistrictsPallet(Pallet):
 
         self.arcgis_services = [('PoliticalDistricts', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\Staging\\political_utm.gdb'
+        self.political = 'C:\\Scheduled\\staging\\political_utm.gdb'
 
         self.copy_data = [self.political]
         self.destination_coordinate_system = 26912
@@ -109,7 +109,7 @@ class SocrataPallet(Pallet):
 
         self.arcgis_services = [('Socrata', 'MapServer')]
 
-        self.staging = 'C:\\Scheduled\\Staging'
+        self.staging = 'C:\\Scheduled\\staging'
         self.political = join(self.staging, 'political.gdb')
         self.boundaries = join(self.staging, 'boundaries.gdb')
         self.society = join(self.staging, 'society.gdb')
@@ -144,7 +144,7 @@ class UtahEmPallet(Pallet):
 
         self.arcgis_services = [('UtahEM', 'MapServer')]
 
-        self.staging = 'C:\\Scheduled\\Staging'
+        self.staging = 'C:\\Scheduled\\staging'
         self.udes = join(self.staging, 'udes.gdb')
         self.udes_sde = join(self.garage, 'UDES.sde', 'UDES.DESADMIN.DES_data')
 
