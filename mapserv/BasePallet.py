@@ -10,45 +10,6 @@ from forklift.models import Pallet
 from os.path import join
 
 
-class Hava(Pallet):
-
-    def __init__(self):
-        super(Hava, self).__init__()
-
-        self.arcgis_services = [('Hava', 'MapServer')]
-
-        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries_utm.gdb'
-        self.cadastre = 'C:\\Scheduled\\Staging\\cadastre_utm.gdb'
-        self.location = 'C:\\Scheduled\\Staging\\location_utm.gdb'
-        self.political = 'C:\\Scheduled\\Staging\\political_utm.gdb'
-
-        self.copy_data = [self.boundaries, self.cadastre, self.location, self.political]
-        self.destination_coordinate_system = 26912
-
-    def build(self, configuration=None):
-        source_workspace = join(self.garage, 'SGID10.sde')
-
-        self.add_crates(['Counties', 'ZipCodes'], {'source_workspace': source_workspace,
-                                                   'destination_workspace': self.boundaries})
-
-        self.add_crates(
-            ['Parcels_Wasatch', 'Parcels_Wayne', 'Parcels_Uintah', 'Parcels_Utah', 'Parcels_Daggett', 'Parcels_Iron',
-             'Parcels_Juab', 'Parcels_Beaver', 'Parcels_Summit', 'Parcels_Cache', 'Parcels_Sanpete',
-             'Parcels_Washington', 'Parcels_Weber', 'Parcels_Grand', 'Parcels_Millard', 'Parcels_Emery',
-             'Parcels_Piute', 'Parcels_Carbon', 'Parcels_SanJuan', 'Parcels_BoxElder', 'Parcels_Duchesne',
-             'Parcels_Morgan', 'Parcels_Davis', 'Parcels_SaltLake', 'Parcels_Tooele', 'Parcels_Kane', 'Parcels_Rich'],
-            {'source_workspace': source_workspace,
-             'destination_workspace': self.cadastre})
-
-        self.add_crates(['AddressPoints'], {'source_workspace': source_workspace,
-                                            'destination_workspace': self.location})
-
-        self.add_crates(
-            ['UtahSenateDistricts2012', 'UtahHouseDistricts2012', 'VistaBallotAreas', 'VistaBallotAreas_Proposed',
-             'USCongressDistricts2012'], {'source_workspace': source_workspace,
-                                          'destination_workspace': self.political})
-
-
 class LandUsePlanningPallet(Pallet):
 
     def __init__(self):
