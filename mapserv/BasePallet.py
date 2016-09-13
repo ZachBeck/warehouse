@@ -109,11 +109,12 @@ class SocrataPallet(Pallet):
 
         self.arcgis_services = [('Socrata', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\Staging\\political.gdb'
-        self.boundaries = 'C:\\Scheduled\\Staging\\boundaries.gdb'
-        self.society = 'C:\\Scheduled\\Staging\\society.gdb'
-        self.energy = 'C:\\Scheduled\\Staging\\energy.gdb'
-        self.economy = 'C:\\Scheduled\\Staging\\economy.gdb'
+        self.staging = 'C:\\Scheduled\\Staging'
+        self.political = join(self.staging, 'political.gdb')
+        self.boundaries = join(self.staging, 'boundaries.gdb')
+        self.society = join(self.staging, 'society.gdb')
+        self.energy = join(self.staging, 'energy.gdb')
+        self.economy = join(self.staging, 'economy.gdb')
 
         self.copy_data = [self.political, self.boundaries, self.society, self.energy, self.economy]
 
@@ -135,3 +136,87 @@ class SocrataPallet(Pallet):
 
         self.add_crates(['TaxEntities2014'], {'source_workspace': source_workspace,
                                               'destination_workspace': self.economy})
+
+
+class UtahEmPallet(Pallet):
+    def __init__(self):
+        super(UtahEmPallet, self).__init__()
+
+        self.arcgis_services = [('UtahEM', 'MapServer')]
+
+        self.staging = 'C:\\Scheduled\\Staging'
+        self.udes = join(self.staging, 'udes.gdb')
+        self.udes_sde = join(self.garage, 'UDES.sde', 'UDES.DESADMIN.DES_data')
+
+        self.copy_data = [self.udes]
+
+    def build(self, configuration):
+        self.add_crates(['Bridges',
+                         'Dams',
+                         'Electricgeneration',
+                         'Ngplants',
+                         'Ngstorage',
+                         'Repeaters_AmateurRadio',
+                         'Repeaters_LongLlink',
+                         'UtahPowerFacilities',
+                         'OtherPowerFacilities',
+                         'UtahPowerLines',
+                         'OtherPowerLines',
+                         'Pipelines',
+                         'Armories',
+                         'EOCs',
+                         'FireStations',
+                         'Hospitals',
+                         'PoliceStations',
+                         'Shelters',
+                         'Childcare',
+                         'Eldercare',
+                         'Schools',
+                         'dambreaks_bor_causey',
+                         'dambreaks_bor_currantcreek',
+                         'Dambreaks_bor_deercreek',
+                         'Dambreaks_bor_eastcanyon',
+                         'Dambreaks_bor_echo',
+                         'Dambreaks_bor_flaminggorge',
+                         'Dambreaks_bor_huntingtonnorth',
+                         'dambreaks_bor_hyrum',
+                         'dambreaks_bor_joesvalley',
+                         'dambreaks_bor_jordanelle',
+                         'dambreaks_bor_lostcreek',
+                         'dambreaks_bor_moonlake',
+                         'dambreaks_bor_pineview',
+                         'dambreaks_bor_redfleet',
+                         'dambreaks_bor_scofield',
+                         'dambreaks_bor_soldiercreek',
+                         'dambreaks_bor_starvation',
+                         'dambreaks_bor_steinaker',
+                         'dambreaks_bor_upperstillwater',
+                         'dambreaks_bor_wanship',
+                         'Dambreaks',
+                         'Floodways_ironco',
+                         'Floodzones_slco_utco',
+                         'Floodzones_sumco',
+                         'Floodzones_webco',
+                         'GroundShaking_SaltLake_HIRES',
+                         'GroundShaking_Anderson_MMI',
+                         'GroundShaking_Bountiful_MMI',
+                         'GroundShaking_BrighamCity_MMI',
+                         'GroundShaking_CedarCity_MMI',
+                         'GroundShaking_Clarkston_MMI',
+                         'GroundShaking_Colliston_MMI',
+                         'GroundShaking_Fayette_MMI',
+                         'GroundShaking_Levan_MMI',
+                         'GroundShaking_Malad_MMI',
+                         'GroundShaking_Nephi_MMI',
+                         'GroundShaking_Provo_MMI',
+                         'GroundShaking_Richfield_MMI',
+                         'GroundShaking_SLC1_MMI',
+                         'GroundShaking_SLC2_MMI',
+                         'GroundShaking_StGeorge_MMI',
+                         'GroundShaking_Taylorsville_MMI',
+                         'GroundShaking_Washington_MMI',
+                         'GroundShaking_Weber_MMI',
+                         'Liquifaction_Potential',
+                         'qFaults',
+                         'WildlandFire_Hazard'
+                         ], {'source_workspace': self.udes_sde, 'destination_workspace': self.udes})
