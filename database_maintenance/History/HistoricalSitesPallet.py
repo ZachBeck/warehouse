@@ -38,3 +38,6 @@ class HistoricalSitesPallet(Pallet):
         arcpy.CalculateField_management(archSitesFL, field, '"Site(s) Present"')
         arcpy.SelectLayerByAttribute_management(archSitesFL, 'SWITCH_SELECTION')
         arcpy.CalculateField_management(archSitesFL, field, '"Site Presence Unknown"')
+
+        self.log.info('deleting layer')
+        arcpy.Delete_management(archSitesFL)
