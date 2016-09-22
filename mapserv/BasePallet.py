@@ -220,3 +220,38 @@ class UtahEmPallet(Pallet):
                          'qFaults',
                          'WildlandFire_Hazard'
                          ], {'source_workspace': self.udes_sde, 'destination_workspace': self.udes})
+
+
+class HavaPallet(Pallet):
+    # NOTE: This pallet can be removed as soon as the Vista app upgrades and switches to using the "Vista" map service
+    # which already has a pallet defined within it's project repo
+    def __init__(self):
+        super(HavaPallet, self).__init__()
+
+        self.arcgis_service = [('Hava', 'MapServer')]
+
+        self.staging = r'C:\\Scheduled\staging'
+        self.sgid = join(self.garage, 'SGID10.sde')
+
+        self.political = join(self.staging, 'political_utm.gdb')
+        self.boundaries = join(self.staging, 'boundaries_utm.gdb')
+        self.cadastre = join(self.staging, 'cadastre_utm.gdb')
+        self.location = join(self.staging, 'location_utm.gdb')
+
+        self.copy_data = [self.political, self.boundaries, self.cadastre, self.location]
+
+    def build(self, configuration):
+        self.add_crates(['UtahHouseDistricts2012', 'UtahSenateDistricts2012', 'USCongressDistricts2012', 'VistaBallotAreas', 'VistaBallotAreas_Proposed'],
+                        {'source_workspace': self.sgid,
+                         'destination_workspace': self.political})
+        self.add_crates(['Parcels_Wasatch', 'Parcels_Wayne', 'Parcels_Uintah', 'Parcels_Utah', 'Parcels_Daggett', 'Parcels_Iron',
+                         'Parcels_Juab', 'Parcels_Beaver', 'LandOwnership', 'Parcels_Summit', 'Parcels_Cache', 'Parcels_Sanpete',
+                         'Parcels_Washington', 'Parcels_Weber', 'Parcels_Grand', 'Parcels_Millard', 'Parcels_Emery',
+                         'PLSSTownships_GCDB', 'PLSSSections_GCDB', 'Parcels_Carbon', 'Parcels_SanJuan', 'Parcels_BoxElder',
+                         'Parcels_Davis', 'Parcels_SaltLake', 'Parcels_Tooele', 'Parcels_Rich'],
+                        {'source_workspace': self.sgid,
+                         'destination_workspace': self.cadastre})
+        self.add_crates(['Counties', 'ZipCodes'],
+                        {'source_workspace': self.sgid,
+                         'destination_workspace': self.boundaries})
+        self.add_crate('AddressPoints', self.sgid, self.location)
