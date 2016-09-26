@@ -1,2 +1,5 @@
+*.ags
 *.pyc
 *.sde
+mapserv/sddrafts/
+mapserv/secrets.py

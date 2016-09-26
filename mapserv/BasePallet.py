@@ -228,7 +228,7 @@ class HavaPallet(Pallet):
     def __init__(self):
         super(HavaPallet, self).__init__()
 
-        self.arcgis_service = [('Hava', 'MapServer')]
+        self.arcgis_services = [('Hava', 'MapServer')]
 
         self.staging = r'C:\\Scheduled\staging'
         self.sgid = join(self.garage, 'SGID10.sde')
@@ -254,4 +254,4 @@ class HavaPallet(Pallet):
         self.add_crates(['Counties', 'ZipCodes'],
                         {'source_workspace': self.sgid,
                          'destination_workspace': self.boundaries})
-        self.add_crate('AddressPoints', self.sgid, self.location)
+        self.add_crate(['AddressPoints', self.sgid, self.location])
