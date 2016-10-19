@@ -255,3 +255,24 @@ class HavaPallet(Pallet):
                         {'source_workspace': self.sgid,
                          'destination_workspace': self.boundaries})
         self.add_crate(['AddressPoints', self.sgid, self.location])
+
+
+class UtahPlssPallet(Pallet):
+    # NOTE: This pallet can be removed as soon as we deprecate this service. it's a vector cache in ago now.
+    def __init__(self):
+        super(UtahPlssPallet, self).__init__()
+
+        self.arcgis_services = [('UtahPLSS', 'MapServer')]
+
+        self.staging = r'C:\\Scheduled\staging'
+        self.sgid = join(self.garage, 'SGID10.sde')
+
+        self.cadastre = join(self.staging, 'cadastre_utm.gdb')
+
+        self.copy_data = [self.cadastre]
+        self.destination_coordinate_system = 26912
+
+    def build(self, configuration):
+        self.add_crates(['PLSSTownships_GCDB', 'PLSSSections_GCDB', 'PLSSQuarterSections_GCDB', 'PLSSQuarterQuarterSections_GCDB'],
+                        {'source_workspace': self.sgid, 'destination_workspace': self.cadastre})
+
