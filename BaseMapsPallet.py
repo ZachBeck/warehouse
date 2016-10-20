@@ -16,10 +16,11 @@
           super(BaseMapsPallet, self).__init__()
   
           self.arcgis_services = [('BaseMaps/AddressPoints', 'MapServer'), ('BaseMaps/Hillshade', 'MapServer')]
-  
-          self.transportation = 'C:\\Scheduled\\Staging\\transportation_utm.gdb'
-          self.boundaries = 'C:\\Scheduled\\Staging\\boundaries_utm.gdb'
-          self.location = 'C:\\Scheduled\\Staging\\location_utm.gdb'
+   
+          staging = 'C:\\Scheduled\\staging'
+          self.transportation = join(staging, 'transportation_utm.gdb')
+          self.boundaries = join('boundaries_utm.gdb')
+          self.location = join('location_utm.gdb')
   
           self.copy_data = [self.transportation, self.boundaries, self.location]
           self.destination_coordinate_system = 26912
