@@ -22,7 +22,7 @@ class UggpPallet(Pallet):
             self.log.info('arcpy.env.workspace: %s', arcpy.env.workspace)
             self.log.info('connection: %s', sdeconnection)
             description = arcpy.Describe(sdeconnection)
-            self.log.info('workspace type: %s %s', result.workspaceType, result.workspaceFactoryProgID)
+            self.log.info('workspace type: %s %s', description.workspaceType, description.workspaceFactoryProgID)
             
             arcpy.Compress_management(sdeconnection)
             self.log.info('Compress Complete')
