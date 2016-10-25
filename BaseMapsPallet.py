@@ -19,8 +19,8 @@ class BaseMapsPallet(Pallet):
 
         staging = 'C:\\Scheduled\\staging'
         self.transportation = join(staging, 'transportation_utm.gdb')
-        self.boundaries = join('boundaries_utm.gdb')
-        self.location = join('location_utm.gdb')
+        self.boundaries = join(staging, 'boundaries_utm.gdb')
+        self.location = join(staging, 'location_utm.gdb')
 
         self.copy_data = [self.transportation, self.boundaries, self.location]
         self.destination_coordinate_system = 26912
