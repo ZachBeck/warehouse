@@ -22,11 +22,17 @@ class UggpPallet(Pallet):
             self.log.info('arcpy.env.workspace: %s', arcpy.env.workspace)
             self.log.info('connection: %s', sdeconnection)
             description = arcpy.Describe(sdeconnection)
-            self.log.info('workspace full props: %s %s', description.fullPropsRetrieved)
+            self.log.info('workspace full props: %s', description.fullPropsRetrieved)
             self.log.info('workspace valid: %s', 'SdeWorkspace' in getattr(description, 'workspaceFactoryProgID', ''))
+            self.log.info('connection exists: %s', arcpy.Exists(sdeconnection))
             
-            arcpy.Compress_management(sdeconnection)
-            self.log.info('Compress Complete')
+            arcpy.env.workspace = sdeconnection 
+            try:
+                arcpy.Compress_management()
+                self.log.info('Compress Complete')
+            except Exception as ex:
+                log.error('compress exception: %s', e.message, exc_info=True)
+                
             arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
             self.log.info('Analyze System Tables Complete')
 
