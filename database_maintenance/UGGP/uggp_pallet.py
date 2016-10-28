@@ -18,21 +18,21 @@ class UggpPallet(Pallet):
         try:
             # Run commands as user SDE to compress and analyze database and system tables
             sdeconnection = join(self.garage, 'UGGP', 'sde@UGGP@uggp.agrc.utah.gov.sde')
-            
+
             self.log.info('arcpy.env.workspace: %s', arcpy.env.workspace)
             self.log.info('connection: %s', sdeconnection)
             description = arcpy.Describe(sdeconnection)
             self.log.info('workspace full props: %s', description.fullPropsRetrieved)
             self.log.info('workspace valid: %s', 'SdeWorkspace' in getattr(description, 'workspaceFactoryProgID', ''))
             self.log.info('connection exists: %s', arcpy.Exists(sdeconnection))
-            
-            arcpy.env.workspace = sdeconnection 
+
+            arcpy.env.workspace = sdeconnection
             try:
                 arcpy.Compress_management()
                 self.log.info('Compress Complete')
             except Exception as ex:
-                log.error('compress exception: %s', e.message, exc_info=True)
-                
+                self.log.error('compress exception: %s', e.message, exc_info=True)
+
             arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
             self.log.info('Analyze System Tables Complete')
 
