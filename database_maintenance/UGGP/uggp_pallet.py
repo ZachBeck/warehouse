@@ -28,7 +28,7 @@ class UggpPallet(Pallet):
 
             arcpy.env.workspace = sdeconnection
             try:
-                arcpy.Compress_management()
+                arcpy.Compress_management(sdeconnection)
                 self.log.info('Compress Complete')
             except Exception as ex:
                 self.log.error('compress exception: %s', ex.message, exc_info=True)
