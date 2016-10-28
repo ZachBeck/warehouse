@@ -31,7 +31,7 @@ class UggpPallet(Pallet):
                 arcpy.Compress_management()
                 self.log.info('Compress Complete')
             except Exception as ex:
-                self.log.error('compress exception: %s', e.message, exc_info=True)
+                self.log.error('compress exception: %s', ex.message, exc_info=True)
 
             arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
             self.log.info('Analyze System Tables Complete')
