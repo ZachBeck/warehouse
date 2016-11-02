@@ -8,7 +8,7 @@ A collection of pallets to be used with forklift that do not have repositories o
 
 ## ActsPallet.py Requirements
 
-1. 'ACTS_PROD.sde'and 'ACTS_STAGE.sde' in the garage
+1. `ACTS_PROD.sde` and `ACTS_STAGE.sde` in the garage
 
 ## database_maintenance pallet Requirements
 
