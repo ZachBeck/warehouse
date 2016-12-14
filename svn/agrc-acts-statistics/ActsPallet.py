@@ -44,10 +44,16 @@ class ActsPallet(Pallet):
 
         self.source_workspace = join(self.garage, db)
 
+        self.add_crate(self.PROJECTAREA,
+        {'source_workspace': self.source_workspace,
+         'destination_workspace': self.destination_workspace})
+
+        #: these crates have a different primary key
         self.add_crates(
-            [self.PROJECTAREA, self.PROJECTINFORMATION, self.CONTRACTINFORMATION, self.COUNTY],
+            [self.PROJECTINFORMATION, self.CONTRACTINFORMATION, self.COUNTY],
             {'source_workspace': self.source_workspace,
-             'destination_workspace': self.destination_workspace})
+             'destination_workspace': self.destination_workspace,
+             'source_primary_key': 'GUID'})
 
         self._create_workspace(self.destination_workspace)
 
