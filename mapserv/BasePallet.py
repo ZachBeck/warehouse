@@ -230,7 +230,7 @@ class HavaPallet(Pallet):
 
         self.arcgis_services = [('Hava', 'MapServer')]
 
-        self.staging = r'C:\\Scheduled\staging'
+        self.staging = r'C:\Scheduled\staging'
         self.sgid = join(self.garage, 'SGID10.sde')
 
         self.political = join(self.staging, 'political_utm.gdb')
@@ -275,4 +275,3 @@ class UtahPlssPallet(Pallet):
     def build(self, configuration):
         self.add_crates(['PLSSTownships_GCDB', 'PLSSSections_GCDB', 'PLSSQuarterSections_GCDB', 'PLSSQuarterQuarterSections_GCDB'],
                         {'source_workspace': self.sgid, 'destination_workspace': self.cadastre})
-
