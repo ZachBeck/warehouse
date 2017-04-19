@@ -16,7 +16,6 @@ class UggpPallet(Pallet):
 
     def ship(self):
         try:
-            arcpy.ClearWorkspaceCache_management()
             # Run commands as user SDE to compress and analyze database and system tables
             sdeconnection = join(self.garage, 'UGGP', 'sde@UGGP@uggp.agrc.utah.gov.sde')
 
