@@ -17,7 +17,7 @@ class PoliticalDistrictsPallet(Pallet):
 
         self.arcgis_services = [('PoliticalDistricts', 'MapServer')]
 
-        self.political = 'C:\\Scheduled\\staging\\political_utm.gdb'
+        self.political = join(self.staging_rack, 'political_utm.gdb')
 
         self.copy_data = [self.political]
         self.destination_coordinate_system = 26912
@@ -38,12 +38,11 @@ class SocrataPallet(Pallet):
 
         self.arcgis_services = [('Socrata', 'MapServer')]
 
-        self.staging = 'C:\\Scheduled\\staging'
-        self.political = join(self.staging, 'political.gdb')
-        self.boundaries = join(self.staging, 'boundaries.gdb')
-        self.society = join(self.staging, 'society.gdb')
-        self.energy = join(self.staging, 'energy.gdb')
-        self.economy = join(self.staging, 'economy.gdb')
+        self.political = join(self.staging_rack, 'political.gdb')
+        self.boundaries = join(self.staging_rack, 'boundaries.gdb')
+        self.society = join(self.staging_rack, 'society.gdb')
+        self.energy = join(self.staging_rack, 'energy.gdb')
+        self.economy = join(self.staging_rack, 'economy.gdb')
 
         self.copy_data = [self.political, self.boundaries, self.society, self.energy, self.economy]
 
@@ -73,8 +72,7 @@ class UtahEmPallet(Pallet):
 
         self.arcgis_services = [('UtahEM', 'MapServer')]
 
-        self.staging = 'C:\\Scheduled\\staging'
-        self.udes = join(self.staging, 'udes.gdb')
+        self.udes = join(self.staging_rack, 'udes.gdb')
         self.udes_sde = join(self.garage, 'UDES.sde', 'UDES.DESADMIN.DES_data')
 
         self.copy_data = [self.udes]
@@ -159,13 +157,12 @@ class HavaPallet(Pallet):
 
         self.arcgis_services = [('Hava', 'MapServer')]
 
-        self.staging = r'C:\Scheduled\staging'
         self.sgid = join(self.garage, 'SGID10.sde')
 
-        self.political = join(self.staging, 'political_utm.gdb')
-        self.boundaries = join(self.staging, 'boundaries_utm.gdb')
-        self.cadastre = join(self.staging, 'cadastre_utm.gdb')
-        self.location = join(self.staging, 'location_utm.gdb')
+        self.political = join(self.staging_rack, 'political_utm.gdb')
+        self.boundaries = join(self.staging_rack, 'boundaries_utm.gdb')
+        self.cadastre = join(self.staging_rack, 'cadastre_utm.gdb')
+        self.location = join(self.staging_rack, 'location_utm.gdb')
 
         self.copy_data = [self.political, self.boundaries, self.cadastre, self.location]
 
@@ -193,10 +190,9 @@ class UtahPlssPallet(Pallet):
 
         self.arcgis_services = [('UtahPLSS', 'MapServer')]
 
-        self.staging = r'C:\\Scheduled\staging'
         self.sgid = join(self.garage, 'SGID10.sde')
 
-        self.cadastre = join(self.staging, 'cadastre_utm.gdb')
+        self.cadastre = join(self.staging_rack, 'cadastre_utm.gdb')
 
         self.copy_data = [self.cadastre]
         self.destination_coordinate_system = 26912

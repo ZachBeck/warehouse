@@ -12,7 +12,8 @@ Tip:
 To create the .sddraft files use arcpy.CreateGeocodeSDDraft
 '''
 
-from forklift.models import Pallet, Crate
+from forklift.models import Crate
+from forklift.models import Pallet
 from os import environ
 from os import path
 from agrc import ags
@@ -20,22 +21,18 @@ import arcpy
 
 
 class LocatorsPallet(Pallet):
+
     def build(self, config):
         self.sgid = path.join(self.garage, 'SGID10.sde')
-        self.locators = r'C:\Scheduled\staging\locators.gdb'
+        self.locators = path.join(self.staging_rack, 'locators.gdb')
 
         self.add_crates(['AddressPoints', 'Roads'], {'source_workspace': self.sgid, 'destination_workspace': self.locators})
 
     def post_copy_process(self):
-        locators_roads = ['Roads_AddressSystem_ACSALIAS',
-                          'Roads_AddressSystem_ALIAS1',
-                          'Roads_AddressSystem_ALIAS2',
-                          'Roads_AddressSystem_STREET']
+        locators_roads = ['Roads_AddressSystem_ACSALIAS', 'Roads_AddressSystem_ALIAS1', 'Roads_AddressSystem_ALIAS2', 'Roads_AddressSystem_STREET']
         locator_addressPoints = 'AddressPoints_AddressSystem'
 
-        self.agsAdmin = ags.AGSAdmin(environ.get('FORKLIFT_AGS_USERNAME'),
-                                     environ.get('FORKLIFT_AGS_PASSWORD'),
-                                     environ.get('FORKLIFT_AGS_SERVER_HOST'))
+        self.agsAdmin = ags.AGSAdmin(environ.get('FORKLIFT_AGS_USERNAME'), environ.get('FORKLIFT_AGS_PASSWORD'), environ.get('FORKLIFT_AGS_SERVER_HOST'))
 
         if self.get_crates()[0].result[0] in [Crate.CREATED, Crate.UPDATED]:
             self.rebuild_locator(locator_addressPoints)
@@ -49,17 +46,17 @@ class LocatorsPallet(Pallet):
 
         self.log.info('rebuilding {}'.format(locator))
         arcpy.RebuildAddressLocator_geocoding(path.join(self.locators, locator))
-        sdFile = r'{}\{}.sd'.format(sddraftsFolder, locator)
+        sdFile = '{}\\{}.sd'.format(sddraftsFolder, locator)
 
-        # clear out any old .sd files
+        #: clear out any old .sd files
         if arcpy.Exists(sdFile):
             arcpy.Delete_management(sdFile)
-        sddraftFile = '{}\{}.sddraft'.format(sddraftsFolder, locator)
+        sddraftFile = '{}\\{}.sddraft'.format(sddraftsFolder, locator)
         if arcpy.Exists(sddraftFile):
             arcpy.Delete_management(sddraftFile)
 
-        # delete existing locator service
-        service = r'Geolocators/' + locator
+        #: delete existing locator service
+        service = 'Geolocators/' + locator
         serviceType = 'GeocodeServer'
         self.log.info('deleting existing service')
         try:
@@ -67,9 +64,9 @@ class LocatorsPallet(Pallet):
         except Exception:
             pass
 
-        # need to make a copy of the .sddraft file
-        # since StageService deletes it
-        copy_location = '{}\{}\{}.sddraft'.format(sddraftsFolder, 'originals', locator)
+        #: need to make a copy of the .sddraft file
+        #: since StageService deletes it
+        copy_location = '{}\\{}\\{}.sddraft'.format(sddraftsFolder, 'originals', locator)
         self.log.info('publishing new service')
 
         arcpy.Copy_management(copy_location, sddraftFile)
