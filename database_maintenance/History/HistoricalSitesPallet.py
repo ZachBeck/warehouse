@@ -35,9 +35,9 @@ class HistoricalSitesPallet(Pallet):
         arcpy.SelectLayerByLocation_management(archSitesFL, 'INTERSECT', poly, '', 'ADD_TO_SELECTION')
 
         self.log.info('calculating new values for: ' + field)
-        arcpy.CalculateField_management(archSitesFL, field, '"Site(s) Present"')
+        arcpy.CalculateField_management(archSitesFL, field, '"Site(s) Present"', 'PYTHON')
         arcpy.SelectLayerByAttribute_management(archSitesFL, 'SWITCH_SELECTION')
-        arcpy.CalculateField_management(archSitesFL, field, '"Site Presence Unknown"')
+        arcpy.CalculateField_management(archSitesFL, field, '"Site Presence Unknown"', 'PYTHON')
 
         self.log.info('deleting layer')
         arcpy.Delete_management(archSitesFL)
