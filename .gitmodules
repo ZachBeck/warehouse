@@ -1,0 +1,4 @@
+[submodule "mapserv/agrc"]
+	path = mapserv/agrc
+	url = https://github.com/agrc/agrc.python
+	branch = py3

@@ -12,12 +12,15 @@ Tip:
 To create the .sddraft files use arcpy.CreateGeocodeSDDraft
 '''
 
+import arcpy
 from forklift.models import Crate
 from forklift.models import Pallet
 from os import environ
 from os import path
+
+import sys
+sys.path.append(path.join(path.realpath(path.dirname(__file__)), 'agrc'))
 from agrc import ags
-import arcpy
 
 
 class LocatorsPallet(Pallet):
