@@ -18,9 +18,9 @@ class UdwrPallet(Pallet):
             # Run commands as user SDE to compress and analyze database and system tables
             sdeconnection = join(self.garage, 'UDWR', 'DNR_sde@UDWR@udwr.agrc.utah.gov.sde')
             arcpy.Compress_management(sdeconnection)
-            print 'Compress Complete'
+            print('Compress Complete')
             arcpy.AnalyzeDatasets_management(sdeconnection, 'SYSTEM')
-            print 'Analyze System Tables Complete'
+            print('Analyze System Tables Complete')
 
             userconnections = [join(self.garage, 'UDWR', 'DNR_DWRADMIN@UDWR@itdb104sp.dts.utah.gov.sde')]
 
@@ -50,7 +50,7 @@ class UdwrPallet(Pallet):
                 # Execute analyze datasets
                 # Note: to use the 'SYSTEM' option the workspace user must be an administrator.
                 arcpy.AnalyzeDatasets_management(workspace, 'NO_SYSTEM', dataList, 'ANALYZE_BASE', 'ANALYZE_DELTA', 'ANALYZE_ARCHIVE')
-                print 'Analyze Complete'
+                print('Analyze Complete')
 
         except Exception:
             self.send_email('michaelfoulger@utah.gov', 'Error with {}'.format(__file__), format_exc())
