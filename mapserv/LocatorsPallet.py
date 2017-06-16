@@ -18,9 +18,7 @@ from forklift.models import Pallet
 from os import environ
 from os import path
 
-import sys
-sys.path.append(path.join(path.realpath(path.dirname(__file__)), 'agrc'))
-from agrc import ags
+from agrc.agrc import ags
 
 
 class LocatorsPallet(Pallet):
